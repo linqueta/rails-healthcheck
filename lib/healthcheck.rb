@@ -4,6 +4,7 @@ require 'healthcheck/version'
 require 'healthcheck/configuration'
 require 'healthcheck/check'
 require 'healthcheck/checker'
+require 'healthcheck/router'
 
 module Healthcheck
   require 'healthcheck/railtie' if defined?(Rails)
@@ -18,5 +19,9 @@ module Healthcheck
 
   def self.configuration
     @configuration ||= Configuration.new
+  end
+
+  def self.routes(router)
+    Healthcheck::Router.mount(router)
   end
 end

@@ -39,4 +39,12 @@ RSpec.describe Healthcheck, type: :module do
 
     it { is_expected.to be_a(described_class::Configuration) }
   end
+
+  describe '.routes' do
+    subject { described_class.routes(nil) }
+
+    after { subject }
+
+    it { expect(Healthcheck::Router).to receive(:mount).once }
+  end
 end
