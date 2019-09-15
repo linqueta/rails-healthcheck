@@ -26,7 +26,7 @@ Set the settings in the file _config/initializers/healthcheck.rb_:
 ```ruby
 # frozen_string_literal: true.
 
-Rails::HealthCheck.configure do |config|
+HealthCheck.configure do |config|
   config.success_http_code = 200
   config.error_http_code = 503
   config.verbose_errors = false
