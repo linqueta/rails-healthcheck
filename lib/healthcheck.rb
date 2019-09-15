@@ -4,6 +4,7 @@ require 'healthcheck/version'
 require 'healthcheck/configuration'
 require 'healthcheck/check'
 require 'healthcheck/checker'
+require 'healthcheck/error'
 require 'healthcheck/router'
 
 module Healthcheck

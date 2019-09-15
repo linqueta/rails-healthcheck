@@ -12,8 +12,6 @@ RSpec.describe Healthcheck::Configuration, type: :model do
     it { expect(subject.verbose).to be_nil }
     it { expect(subject.route).to be_nil }
     it { expect(subject.method).to be_nil }
-    it { expect(subject.parallel).to be_nil }
-    it { expect(subject.all).to be_nil }
     it { expect(subject.checks).to be_empty }
   end
 

@@ -32,8 +32,6 @@ HealthCheck.configure do |config|
   config.verbose = false
   config.route = '/healthcheck'
   config.method = :get
-  config.parallel = true
-  config.all = false
 
   # -- Checks --
   # Check if the db is available

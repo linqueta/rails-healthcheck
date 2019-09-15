@@ -8,5 +8,9 @@ module Healthcheck
       @name = name
       @block = block
     end
+
+    def execute!
+      block.call
+    end
   end
 end

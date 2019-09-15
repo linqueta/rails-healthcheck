@@ -14,8 +14,6 @@ RSpec.describe Healthcheck, type: :module do
         config.verbose = false
         config.route = '/healthcheck'
         config.method = :get
-        config.parallel = true
-        config.all = false
 
         config.add_check(name, block)
       end
@@ -28,9 +26,6 @@ RSpec.describe Healthcheck, type: :module do
     it { expect(described_class.verbose).to eq(false) }
     it { expect(described_class.route).to eq('/healthcheck') }
     it { expect(described_class.method).to eq(:get) }
-    it { expect(described_class.parallel).to eq(true) }
-    it { expect(described_class.all).to eq(false) }
-    it { expect(described_class.checks).not_to be_empty }
     it { expect(described_class.checks.first).to be_a(Healthcheck::Check) }
   end
 

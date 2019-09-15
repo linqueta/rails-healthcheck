@@ -2,7 +2,7 @@
 
 module Healthcheck
   class Configuration
-    SETTINGS = %i[success error verbose route method parallel all checks].freeze
+    SETTINGS = %i[success error verbose route method checks].freeze
 
     attr_accessor(*SETTINGS)
 

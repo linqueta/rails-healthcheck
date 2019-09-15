@@ -8,7 +8,7 @@ RSpec.describe HealthcheckController, type: :model do
     after { subject }
 
     context 'when check with success' do
-      before { expect_any_instance_of(Healthcheck::Checker).to receive(:code).and_return(Healthcheck.success) }
+      before { expect_any_instance_of(Healthcheck::Checker).to receive(:errored?).and_return(Healthcheck.success) }
 
       it 'returns success code' do
         expect(controller).to receive(:head).with(Healthcheck.success).once
