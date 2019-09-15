@@ -52,7 +52,7 @@ When happen an error and verbose errors is enabled, the response will be like th
 
 ```json
 {
-    "http_code": 503,
+    "code": 503,
     "errors": [
         {
             "name": "migrations_ok",
