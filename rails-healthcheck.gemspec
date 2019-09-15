@@ -2,7 +2,7 @@
 
 lib = File.expand_path('lib', __dir__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'rails/healthcheck/version'
+require 'healthcheck/version'
 
 Gem::Specification.new do |spec|
   spec.name          = 'rails-healthcheck'
