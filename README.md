@@ -17,12 +17,33 @@ gem 'rails-healthcheck'
 and run:
 
 ```
-rails healthcheck:instal
+rails healthcheck:install
 ```
 
-### Changing the default settings
+### Settings
+Set the settings in the file _config/initializers/healthcheck.rb_:
 
-### Changing the default route
+```ruby
+Rails::HealthCheck.configure do |config|
+  config.success_http_code = 200
+  config.error_http_code = 503
+  config.verbose_errors = false
+  config.route = '/healthcheck'
+  config.method = :get
+  config.parallel = true
+  config.execute_all = false
+
+  # -- Checks --
+  # Check if the db is available
+  # config.add_check :database_ok, -> { ActiveRecord::Base.connection.execute('select 1') }
+  # Check if the db is available is without pending migrations
+  # config.add_check :migrations_ok,-> { ActiveRecord::Migration.check_pending! }
+  # Check if the cache is available
+  # config.add_check :cache_ok, -> { Rails.cache.read('some_key') }
+  # Check if the application required envs are defined
+  # config.add_check :environments_ok, -> { Dotenv.require_keys('ENV_NAME', 'ANOTHER_ENV') }
+end
+```
 
 ## Contributing
 
