@@ -1,4 +1,4 @@
-# frozen_string_literal: true.
+# frozen_string_literal: true
 
 HealthCheck.configure do |config|
   config.success_http_code = 200
