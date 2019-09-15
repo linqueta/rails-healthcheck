@@ -45,6 +45,25 @@ Rails::HealthCheck.configure do |config|
 end
 ```
 
+### Verbose errors
+When happen an error and verbose errors is enabled, the response will be like this:
+
+```json
+{
+    "http_code": 503,
+    "errors": [
+        {
+            "name": "migrations_ok",
+            "message": "Migrations are pending. To resolve this issue, run: bin/rails db:migrate RAILS_ENV=production"
+        },
+        {
+            "name": "environments_ok",
+            "message": "Missing required configuration key: [\"RAILS_ENV\"] (Dotenv::MissingKeys)"
+        }
+    ]
+}
+```
+
 ## Contributing
 
 1. Fork it
