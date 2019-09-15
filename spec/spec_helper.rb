@@ -5,6 +5,7 @@ require 'support/configs/simple_cov_config'
 SimpleCovConfig.configure
 
 require 'healthcheck'
+require './app/controllers/healthcheck_controller'
 require 'support/configs/json_matchers_config'
 JsonMatchersConfig.configure
 

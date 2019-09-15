@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'action_controller/railtie'
+
 class HealthcheckController < ActionController::Base
   def check
     head Healthcheck.success
