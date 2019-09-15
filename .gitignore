@@ -1,3 +1,4 @@
 /app/config/*
 TODO
 /coverage/*
+.rspec_status

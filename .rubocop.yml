@@ -4,6 +4,14 @@ require:
 Metrics/LineLength:
   Max: 120
 
+Style/Documentation:
+  Enabled: false
+
+Metrics/BlockLength:
+  Max: 30
+  Exclude:
+    - 'spec/**/*'
+
 AllCops:
   TargetRubyVersion: 2.5.1
   DisplayCopNames: true
