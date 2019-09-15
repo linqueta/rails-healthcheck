@@ -2,6 +2,7 @@
 
 require 'healthcheck/version'
 require 'healthcheck/configuration'
+require 'healthcheck/check'
 
 module Healthcheck
   def self.configure
