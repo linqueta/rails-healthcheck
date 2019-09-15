@@ -1,0 +1,9 @@
+require:
+  - rubocop-performance
+
+Metrics/LineLength:
+  Max: 120
+
+AllCops:
+  TargetRubyVersion: 2.5.1
+  DisplayCopNames: true
