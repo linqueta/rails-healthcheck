@@ -3,6 +3,7 @@
 [![Build Status][travis_status_image]][travis_page]
 [![Maintainability][code_climate_maintainability_image]][code_climate_maintainability_page]
 [![Test Coverage][code_climate_test_coverage_image]][code_climate_test_coverage_page]
+[![Gem Version][gem_version_image]][gem_version_page]
 
 A simple way to configure a healthcheck route for a Rails application
 
@@ -150,3 +151,5 @@ Everyone interacting in the Rails::Healthcheck project’s codebases, issue trac
 [code_climate_maintainability_page]: https://codeclimate.com/github/linqueta/rails-healthcheck/maintainability
 [code_climate_test_coverage_image]: https://api.codeclimate.com/v1/badges/670d851a6c06f77fa36e/test_coverage
 [code_climate_test_coverage_page]: https://codeclimate.com/github/linqueta/rails-healthcheck/test_coverage
+[gem_version_image]: https://badge.fury.io/rb/rails-healthcheck.svg
+[gem_version_page]: https://badge.fury.io/rb/rails-healthcheck.svg
