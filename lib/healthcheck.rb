@@ -6,6 +6,8 @@ require 'healthcheck/check'
 require 'healthcheck/checker'
 
 module Healthcheck
+  require 'healthcheck/railtie' if defined?(Rails)
+
   Configuration::SETTINGS.each do |setting|
     send(:define_singleton_method, setting, -> { configuration.send(setting) })
   end
