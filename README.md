@@ -66,6 +66,64 @@ When happen an error and verbose is enabled (`config.verbose = true`), the respo
 }
 ```
 
+### Requests
+
+- Success
+```
+curl -i localhost:3000/healthcheck
+
+HTTP/1.1 200 OK
+X-Frame-Options: SAMEORIGIN
+X-XSS-Protection: 1; mode=block
+X-Content-Type-Options: nosniff
+X-Download-Options: noopen
+X-Permitted-Cross-Domain-Policies: none
+Referrer-Policy: strict-origin-when-cross-origin
+Content-Type: text/html
+Cache-Control: no-cache
+X-Request-Id: cbc9fdd0-8090-4927-b061-1e82bcf2e039
+X-Runtime: 0.003599
+Transfer-Encoding: chunked
+```
+
+- Error
+```
+curl -i localhost:3000/healthcheck
+
+HTTP/1.1 503 Service Unavailable
+X-Frame-Options: SAMEORIGIN
+X-XSS-Protection: 1; mode=block
+X-Content-Type-Options: nosniff
+X-Download-Options: noopen
+X-Permitted-Cross-Domain-Policies: none
+Referrer-Policy: strict-origin-when-cross-origin
+Content-Type: text/html
+Cache-Control: no-cache
+X-Request-Id: e07eb20f-7d32-4f1a-86ad-32403de2b19a
+X-Runtime: 0.033772
+Transfer-Encoding: chunked
+```
+
+- Error (Verbose)
+```
+curl -i localhost:3000/healthcheck
+
+HTTP/1.1 503 Service Unavailable
+X-Frame-Options: SAMEORIGIN
+X-XSS-Protection: 1; mode=block
+X-Content-Type-Options: nosniff
+X-Download-Options: noopen
+X-Permitted-Cross-Domain-Policies: none
+Referrer-Policy: strict-origin-when-cross-origin
+Content-Type: application/json; charset=utf-8
+Cache-Control: no-cache
+X-Request-Id: 8fa5e69a-bfe3-4bbc-875b-ce86f4269467
+X-Runtime: 0.019992
+Transfer-Encoding: chunked
+
+{"code":503,"errors":[{"name":"zero_division","exception":"ZeroDivisionError","message":"divided by 0"}]}
+```
+
 ## Contributing
 
 1. Fork it
