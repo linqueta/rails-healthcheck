@@ -12,6 +12,13 @@ Metrics/BlockLength:
   Exclude:
     - 'spec/**/*'
 
+Metrics/MethodLength:
+  Max: 30
+
+Naming/FileName:
+  Exclude:
+    - 'lib/rails-healthcheck.rb'
+
 AllCops:
   TargetRubyVersion: 2.5.1
   DisplayCopNames: true
