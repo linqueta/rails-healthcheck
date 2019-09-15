@@ -2,10 +2,10 @@
 
 require 'fileutils'
 
-DESTINATION = 'app/config/initializers/healthcheck.rb'
+DESTINATION = 'config/initializers/healthcheck.rb'
 SOURCE = 'configs'
-OLD_ROUTES = 'app/config/routes.rb'
-NEW_ROUTES = 'app/config/routes.rb.new'
+OLD_ROUTES = 'config/routes.rb'
+NEW_ROUTES = 'config/routes.rb.new'
 ROUTES_SETUP = '  Healthcheck.routes(self)'
 ROUTES_INIT = 'Rails.application.routes.draw do'
 
@@ -14,6 +14,7 @@ namespace :healthcheck do
   task :install do
     FileUtils.mkdir_p(File.dirname(DESTINATION))
     FileUtils.cp(SOURCE, DESTINATION)
+    return unless File.exist?(OLD_ROUTES)
 
     File.open(NEW_ROUTES, 'w') do |new_routes|
       File.foreach(OLD_ROUTES) do |line|
