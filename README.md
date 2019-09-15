@@ -24,43 +24,45 @@ rails healthcheck:install
 Set the settings in the file _config/initializers/healthcheck.rb_:
 
 ```ruby
-# frozen_string_literal: true.
+# frozen_string_literal: true
 
 HealthCheck.configure do |config|
-  config.success_http_code = 200
-  config.error_http_code = 503
-  config.verbose_errors = false
+  config.success = 200
+  config.error = 503
+  config.verbose = false
   config.route = '/healthcheck'
   config.method = :get
   config.parallel = true
-  config.execute_all = false
+  config.all = false
 
   # -- Checks --
   # Check if the db is available
-  # config.add_check :database_ok, -> { ActiveRecord::Base.connection.execute('select 1') }
+  # config.add_check :database, -> { ActiveRecord::Base.connection.execute('select 1') }
   # Check if the db is available is without pending migrations
-  # config.add_check :migrations_ok,-> { ActiveRecord::Migration.check_pending! }
+  # config.add_check :migrations,-> { ActiveRecord::Migration.check_pending! }
   # Check if the cache is available
-  # config.add_check :cache_ok, -> { Rails.cache.read('some_key') }
+  # config.add_check :cache, -> { Rails.cache.read('some_key') }
   # Check if the application required envs are defined
-  # config.add_check :environments_ok, -> { Dotenv.require_keys('ENV_NAME', 'ANOTHER_ENV') }
+  # config.add_check :environments, -> { Dotenv.require_keys('ENV_NAME', 'ANOTHER_ENV') }
 end
 ```
 
 ### Verbose errors
-When happen an error and verbose errors is enabled, the response will be like this:
+When happen an error and verbose is enabled (`config.verbose = true`), the response will be like this:
 
 ```json
 {
     "code": 503,
     "errors": [
         {
-            "name": "migrations_ok",
+            "name": "migrations",
+            "exception": "ActiveRecord::PendingMigrationError",
             "message": "Migrations are pending. To resolve this issue, run: bin/rails db:migrate RAILS_ENV=production"
         },
         {
-            "name": "environments_ok",
-            "message": "Missing required configuration key: [\"RAILS_ENV\"] (Dotenv::MissingKeys)"
+            "name": "environments",
+            "exception": "Dotenv::MissingKeys",
+            "message": "Missing required configuration key: [\"RAILS_ENV\"]"
         }
     ]
 }
