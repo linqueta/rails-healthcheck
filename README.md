@@ -6,7 +6,7 @@
 
 A simple way to configure a healthcheck route for a Rails application
 
-## Instalation and usage
+## Instalation
 
 Add this line to your application's Gemfile:
 
@@ -20,7 +20,7 @@ and run:
 rails healthcheck:install
 ```
 
-### Settings
+## Settings
 Set the settings in the file _config/initializers/healthcheck.rb_:
 
 ```ruby
