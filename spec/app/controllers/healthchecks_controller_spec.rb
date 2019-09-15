@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe HealthcheckController, type: :model do
+RSpec.describe Healthcheck::HealthchecksController, type: :model do
   describe '#check' do
     let(:controller) { described_class.new }
     let(:verbose) { false }

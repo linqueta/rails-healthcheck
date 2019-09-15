@@ -3,7 +3,7 @@
 module Healthcheck
   class Router
     def self.mount(router)
-      router.send(Healthcheck.method, Healthcheck.route => 'healthcheck#check')
+      router.send(Healthcheck.method, Healthcheck.route => 'healthcheck/healthchecks#check')
     end
   end
 end

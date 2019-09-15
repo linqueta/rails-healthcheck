@@ -6,6 +6,7 @@ require 'healthcheck/check'
 require 'healthcheck/checker'
 require 'healthcheck/error'
 require 'healthcheck/router'
+require 'healthcheck/engine'
 
 module Healthcheck
   require 'healthcheck/railtie' if defined?(Rails)

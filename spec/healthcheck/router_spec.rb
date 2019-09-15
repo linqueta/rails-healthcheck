@@ -18,7 +18,7 @@ RSpec.describe Healthcheck::Router, type: :model do
     after { subject }
 
     it do
-      expect(router).to receive(:send).with(Healthcheck.method, Healthcheck.route => 'healthcheck#check')
+      expect(router).to receive(:send).with(Healthcheck.method, Healthcheck.route => 'healthcheck/healthchecks#check')
     end
   end
 end

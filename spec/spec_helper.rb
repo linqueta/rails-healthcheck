@@ -5,7 +5,7 @@ require 'support/configs/simple_cov_config'
 SimpleCovConfig.configure
 
 require 'healthcheck'
-require './app/controllers/healthcheck_controller'
+require './app/controllers/healthcheck/healthchecks_controller'
 
 RSpec.configure do |config|
   config.disable_monkey_patching!
