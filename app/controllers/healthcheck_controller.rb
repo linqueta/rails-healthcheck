@@ -27,7 +27,7 @@ class HealthcheckController < ActionController::Base
   end
 
   def error
-    head Healthcheck.error unless Healthcheck.verbose
+    return head(Healthcheck.error) unless Healthcheck.verbose
 
     render json: { code: Healthcheck.error, errors: checker.errors.as_json }, status: Healthcheck.error
   end

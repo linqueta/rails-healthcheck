@@ -8,11 +8,15 @@ module Healthcheck
 
     def initialize
       SETTINGS.each { |key, _| instance_variable_set("@#{key}", nil) }
-      @checks = []
+      clear!
     end
 
     def add_check(name, block)
       @checks << Check.new(name, block)
+    end
+
+    def clear!
+      @checks = []
     end
   end
 end

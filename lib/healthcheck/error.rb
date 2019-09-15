@@ -6,7 +6,7 @@ module Healthcheck
 
     def initialize(name, exception, message)
       @name = name
-      @exception = exception
+      @exception = exception.to_s
       @message = message&.squish
     end
   end

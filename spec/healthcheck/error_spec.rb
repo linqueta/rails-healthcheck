@@ -12,7 +12,7 @@ RSpec.describe Healthcheck::Error, type: :model do
 
     it { is_expected.to be_a(described_class) }
     it { expect(subject.name).to eq(name) }
-    it { expect(subject.exception).to eq(exception) }
+    it { expect(subject.exception).to eq(exception.to_s) }
     it { expect(subject.message).to eq(message) }
   end
 end

@@ -29,10 +29,10 @@ RSpec.describe Healthcheck::Checker, type: :model do
       it 'has two errors' do
         expect(errors.length).to eq(2)
         expect(standard_error.name).to eq(:standard_error)
-        expect(standard_error.exception).to eq(StandardError)
+        expect(standard_error.exception).to eq('StandardError')
         expect(standard_error.message).to eq('StandardError')
         expect(zero_division.name).to eq(:zero_division)
-        expect(zero_division.exception).to eq(ZeroDivisionError)
+        expect(zero_division.exception).to eq('ZeroDivisionError')
         expect(zero_division.message).to eq('divided by 0')
       end
     end
