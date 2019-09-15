@@ -3,10 +3,11 @@
 require 'healthcheck/version'
 require 'healthcheck/configuration'
 require 'healthcheck/check'
+require 'healthcheck/checker'
 
 module Healthcheck
   Configuration::SETTINGS.each do |setting|
-    send(:define_method, setting, -> { config.send(setting) })
+    send(:define_singleton_method, setting, -> { configuration.send(setting) })
   end
 
   def self.configure

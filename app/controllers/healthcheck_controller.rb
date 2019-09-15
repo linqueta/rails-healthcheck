@@ -4,20 +4,24 @@ require 'action_controller/railtie'
 
 class HealthcheckController < ActionController::Base
   def check
-    head Healthcheck.success
+    head checker.check!.code
   end
 
   private
 
-  def error(_exception)
-    Healthcheck.verbose ? head : verbose
+  def checker
+    @checker ||= Healthcheck::Checker.new
   end
 
-  def head
-    head Healthcheck.error
-  end
+  # def error(_exception)
+  #   Healthcheck.verbose ? head : verbose
+  # end
 
-  def verbose
-    render json: {}, status: Healthcheck.error
-  end
+  # def head
+  #   head Healthcheck.error
+  # end
+
+  # def verbose
+  #   render json: {}, status: Healthcheck.error
+  # end
 end

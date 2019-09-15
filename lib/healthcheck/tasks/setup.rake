@@ -3,7 +3,7 @@
 require 'fileutils'
 
 DESTINATION = 'config/initializers/healthcheck.rb'
-SOURCE = 'configs'
+SOURCE = 'settings'
 OLD_ROUTES = 'config/routes.rb'
 NEW_ROUTES = 'config/routes.rb.new'
 ROUTES_SETUP = '  Healthcheck.routes(self)'
