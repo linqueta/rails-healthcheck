@@ -1,5 +1,7 @@
 # [Rails::Healthcheck][gem_page]
 
+[![Build Status][travis_status_image]][travis_gem_page]
+
 A simple way to configure a healthcheck route for a Rails application
 
 ## Instalation and usage
@@ -40,3 +42,5 @@ Everyone interacting in the Rails::Healthcheck project’s codebases, issue trac
 [code_of_conduct_page]: https://github.com/linqueta/rails-healthcheck/blob/master/CODE_OF_CONDUCT.md
 [mit_license_page]: https://opensource.org/licenses/MIT
 [contributor_convenant_page]: http://contributor-covenant.org
+[travis_status_image]: https://travis-ci.org/linqueta/rails-healthcheck.svg?branch=master
+[travis_gem_page]: https://travis-ci.org/linqueta/rails-healthcheck
