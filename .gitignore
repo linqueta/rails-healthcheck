@@ -1,4 +1,5 @@
 /config/*
 TODO
 /coverage/*
+.rspec_status
 *.gem
