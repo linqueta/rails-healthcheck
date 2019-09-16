@@ -52,7 +52,7 @@ def settings
       # -- Checks --
       # Check if the db is available
       # config.add_check :database, -> { ActiveRecord::Base.connection.execute('select 1') }
-      # Check if the db is available is without pending migrations
+      # Check if the db is available and without pending migrations
       # config.add_check :migrations,-> { ActiveRecord::Migration.check_pending! }
       # Check if the cache is available
       # config.add_check :cache, -> { Rails.cache.read('some_key') }
