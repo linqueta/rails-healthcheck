@@ -27,7 +27,7 @@ Set the settings in the file _config/initializers/healthcheck.rb_:
 ```ruby
 # frozen_string_literal: true
 
-HealthCheck.configure do |config|
+Healthcheck.configure do |config|
   config.success = 200
   config.error = 503
   config.verbose = false
