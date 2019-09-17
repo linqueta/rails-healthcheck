@@ -15,7 +15,7 @@ Gem::Specification.new do |spec|
   spec.homepage      = 'https://github.com/linqueta/rails-healthcheck'
   spec.license       = 'MIT'
 
-  spec.files         = Dir['{app, lib}/**/*', 'CHANGELOG.md', 'MIT-LICENSE', 'README.md']
+  spec.files         = Dir['{app}/**/*', '{lib}/**/*', 'CHANGELOG.md', 'MIT-LICENSE', 'README.md']
   spec.required_ruby_version = '>= 2.5.1'
 
   spec.add_dependency 'rails', '>= 5.2.3'
