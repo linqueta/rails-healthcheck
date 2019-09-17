@@ -11,6 +11,7 @@ ROUTES_INIT = 'Rails.application.routes.draw do'
 namespace :healthcheck do
   desc 'Install the files and settings to the gem Healthcheck works'
   task :install do
+    puts '  -  invoke        Rails::Healthcheck'
     create_initializer
     mount_route
   end
@@ -19,11 +20,13 @@ end
 def create_initializer
   FileUtils.mkdir_p(File.dirname(INITIALIZER))
   File.open(INITIALIZER, 'w') { |file| file << settings }
+  puts '  -    create      config/initializers/healthcheck.rb'
 end
 
 def mount_route
   return unless File.exist?(OLD_ROUTES)
 
+  puts '  -    modify      config/routes.rb'
   File.open(NEW_ROUTES, 'w') do |new_routes|
     File.foreach(OLD_ROUTES) do |line|
       new_routes.puts(line)
