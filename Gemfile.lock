@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    rails-healthcheck (1.0.4)
+    rails-healthcheck (1.0.5)
       rails (>= 5.2.3)
 
 GEM
@@ -166,9 +166,9 @@ GEM
       sprockets (>= 3.0.0)
     terminal-table (1.8.0)
       unicode-display_width (~> 1.1, >= 1.1.1)
-    thor (1.0.0)
+    thor (1.0.1)
     thread_safe (0.3.6)
-    tzinfo (1.2.5)
+    tzinfo (1.2.6)
       thread_safe (~> 0.1)
     unicode-display_width (1.6.0)
     websocket-driver (0.7.1)

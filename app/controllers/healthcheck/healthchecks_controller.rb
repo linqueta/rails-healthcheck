@@ -23,13 +23,17 @@ module Healthcheck
     end
 
     def success
-      head Healthcheck.success
+      head Healthcheck.configuration.success
     end
 
     def error
-      return head(Healthcheck.error) unless Healthcheck.verbose
+      return head(Healthcheck.configuration.error) unless Healthcheck.configuration.verbose
 
-      render json: { code: Healthcheck.error, errors: checker.errors.as_json }, status: Healthcheck.error
+      render json: {
+        code: Healthcheck.configuration.error,
+        errors: checker.errors.as_json
+      },
+             status: Healthcheck.configuration.error
     end
   end
 end

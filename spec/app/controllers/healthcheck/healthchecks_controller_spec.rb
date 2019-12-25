@@ -23,13 +23,13 @@ RSpec.describe Healthcheck::HealthchecksController, type: :model do
       before { allow_any_instance_of(Healthcheck::Check).to receive(:execute!) }
 
       it 'returns success code' do
-        expect(controller).to receive(:head).with(Healthcheck.success).once
+        expect(controller).to receive(:head).with(Healthcheck.configuration.success).once
       end
     end
 
     context 'when check without success' do
       context 'without verbose setting' do
-        it { expect(controller).to receive(:head).with(Healthcheck.error).once }
+        it { expect(controller).to receive(:head).with(Healthcheck.configuration.error).once }
       end
 
       context 'with verbose setting' do

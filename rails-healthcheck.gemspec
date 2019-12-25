@@ -16,6 +16,7 @@ Gem::Specification.new do |spec|
   spec.license       = 'MIT'
 
   spec.files         = Dir['{app}/**/*', '{lib}/**/*', 'CHANGELOG.md', 'MIT-LICENSE', 'README.md']
+
   spec.required_ruby_version = '>= 2.5.1'
 
   spec.add_dependency 'rails', '>= 5.2.3'

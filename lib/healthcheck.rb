@@ -9,21 +9,17 @@ require 'healthcheck/router'
 require 'healthcheck/engine'
 
 module Healthcheck
-  require 'healthcheck/railtie' if defined?(Rails)
+  module_function
 
-  Configuration::SETTINGS.each do |setting|
-    send(:define_singleton_method, setting, -> { configuration.send(setting) })
-  end
-
-  def self.configure
+  def configure
     yield(configuration)
   end
 
-  def self.configuration
+  def configuration
     @configuration ||= Configuration.new
   end
 
-  def self.routes(router)
+  def routes(router)
     Healthcheck::Router.mount(router)
   end
 end
