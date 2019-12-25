@@ -9,7 +9,10 @@ module Healthcheck
     end
 
     def check
-      Healthcheck.configuration.checks.map { |c| Thread.new { execute(c) } }.each(&:join)
+      Healthcheck.configuration
+                 .checks
+                 .map { |c| Thread.new { execute(c) } }
+                 .each(&:join)
     end
 
     def errored?
