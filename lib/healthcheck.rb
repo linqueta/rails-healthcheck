@@ -22,4 +22,8 @@ module Healthcheck
   def routes(router)
     Healthcheck::Router.mount(router)
   end
+
+  def check
+    Healthcheck::Checker.new.tap(&:check)
+  end
 end
