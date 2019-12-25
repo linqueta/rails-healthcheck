@@ -18,7 +18,7 @@ gem 'rails-healthcheck'
 and run:
 
 ```
-rails healthcheck:install
+rails generate healthcheck:install
 ```
 
 ## Settings

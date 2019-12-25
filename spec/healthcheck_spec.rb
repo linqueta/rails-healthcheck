@@ -21,12 +21,12 @@ RSpec.describe Healthcheck, type: :module do
 
     before { subject }
 
-    it { expect(described_class.success).to eq(200) }
-    it { expect(described_class.error).to eq(503) }
-    it { expect(described_class.verbose).to eq(false) }
-    it { expect(described_class.route).to eq('/healthcheck') }
-    it { expect(described_class.method).to eq(:get) }
-    it { expect(described_class.checks.first).to be_a(Healthcheck::Check) }
+    it { expect(described_class.configuration.success).to eq(200) }
+    it { expect(described_class.configuration.error).to eq(503) }
+    it { expect(described_class.configuration.verbose).to eq(false) }
+    it { expect(described_class.configuration.route).to eq('/healthcheck') }
+    it { expect(described_class.configuration.method).to eq(:get) }
+    it { expect(described_class.configuration.checks.first).to be_a(Healthcheck::Check) }
   end
 
   describe '.configuration' do
