@@ -5,7 +5,7 @@
 [![Test Coverage][code_climate_test_coverage_image]][code_climate_test_coverage_page]
 [![Gem Version][gem_version_image]][gem_version_page]
 
-A simple way to configure a healthcheck route for a Rails application
+A simple way to configure a healthcheck route in Rails applications
 
 ## Installation
 
