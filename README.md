@@ -1,13 +1,26 @@
 # [Rails::Healthcheck][gem_page]
 
+[![Gem Version][gem_version_image]][gem_version_page]
 [![Build Status][travis_status_image]][travis_page]
 [![Maintainability][code_climate_maintainability_image]][code_climate_maintainability_page]
 [![Test Coverage][code_climate_test_coverage_image]][code_climate_test_coverage_page]
-[![Gem Version][gem_version_image]][gem_version_page]
 
 A simple way to configure a healthcheck route in Rails applications
 
-## Installation
+## Table of Contents
+- [Getting started](#getting-started)
+  - [Installation](#installation)
+  - [Settings](#settings)
+  - [Verbose Errors](#verbose-errors)
+  - [Ignoring logs](#ignoring-logs)
+    - [Lograge](#lograge)
+  - [Requests Examples](#requests-examples)
+- [Contributing](#contributing)
+- [License](#license)
+
+## Getting started
+
+### Installation
 
 Add this line to your application's Gemfile:
 
@@ -15,14 +28,15 @@ Add this line to your application's Gemfile:
 gem 'rails-healthcheck'
 ```
 
-and run:
+and run the command bellow to create the initializer:
 
 ```
 rails generate healthcheck:install
 ```
 
 ## Settings
-Set the settings in the file _config/initializers/healthcheck.rb_:
+
+You can set the settings in the initializer file (_config/initializers/healthcheck.rb_):
 
 ```ruby
 # frozen_string_literal: true
@@ -35,18 +49,15 @@ Healthcheck.configure do |config|
   config.method = :get
 
   # -- Checks --
-  # Check if the db is available
   # config.add_check :database, -> { ActiveRecord::Base.connection.execute('select 1') }
-  # Check if the db is available and without pending migrations
   # config.add_check :migrations,-> { ActiveRecord::Migration.check_pending! }
-  # Check if the cache is available
   # config.add_check :cache, -> { Rails.cache.read('some_key') }
-  # Check if the application required envs are defined
   # config.add_check :environments, -> { Dotenv.require_keys('ENV_NAME', 'ANOTHER_ENV') }
 end
 ```
 
-### Verbose errors
+### Verbose Errors
+
 When happen an error and verbose is enabled (`config.verbose = true`), the response will be like this:
 
 ```json
@@ -67,10 +78,26 @@ When happen an error and verbose is enabled (`config.verbose = true`), the respo
 }
 ```
 
-### Requests
+## Ignoring logs
+
+### Lograge
+
+If you are using [Lograge](https://github.com/roidrage/lograge) you can ignore Healthcheck logs using this code:
+
+```ruby
+# config/environments/production.rb
+
+Rails.application.configure do
+  config.lograge.enabled = true
+  config.lograge.ignore_actions = [Healthcheck::CONTROLLER_ACTION]
+end
+```
+
+### Requests Examples
 
 - Success
-```
+
+```shell
 curl -i localhost:3000/healthcheck
 
 HTTP/1.1 200 OK
@@ -88,7 +115,7 @@ Transfer-Encoding: chunked
 ```
 
 - Error
-```
+```shell
 curl -i localhost:3000/healthcheck
 
 HTTP/1.1 503 Service Unavailable
@@ -106,7 +133,7 @@ Transfer-Encoding: chunked
 ```
 
 - Error (Verbose)
-```
+```shell
 curl -i localhost:3000/healthcheck
 
 HTTP/1.1 503 Service Unavailable
@@ -123,21 +150,6 @@ X-Runtime: 0.019992
 Transfer-Encoding: chunked
 
 {"code":503,"errors":[{"name":"zero_division","exception":"ZeroDivisionError","message":"divided by 0"}]}
-```
-
-## Ignoring logs
-
-### Lograge
-
-If you are using [Lograge](https://github.com/roidrage/lograge) you can ignore Healthcheck logs using this code:
-
-```ruby
-# config/environments/production.rb
-
-Rails.application.configure do
-  config.lograge.enabled = true
-  config.lograge.ignore_actions = [Healthcheck::CONTROLLER_ACTION]
-end
 ```
 
 ## Contributing
