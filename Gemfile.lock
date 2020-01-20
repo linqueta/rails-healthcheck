@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    rails-healthcheck (1.0.6)
+    rails-healthcheck (1.1.0)
       rails
 
 GEM
