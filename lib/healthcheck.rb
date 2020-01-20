@@ -9,6 +9,8 @@ require 'healthcheck/router'
 require 'healthcheck/engine'
 
 module Healthcheck
+  CONTROLLER_ACTION = 'Healthcheck::HealthchecksController#check'
+
   module_function
 
   def configure

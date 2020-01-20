@@ -125,6 +125,21 @@ Transfer-Encoding: chunked
 {"code":503,"errors":[{"name":"zero_division","exception":"ZeroDivisionError","message":"divided by 0"}]}
 ```
 
+## Ignoring logs
+
+### Lograge
+
+If you are using [Lograge](https://github.com/roidrage/lograge) you can ignore Healthcheck logs using this code:
+
+```ruby
+# config/environments/production.rb
+
+Rails.application.configure do
+  config.lograge.enabled = true
+  config.lograge.ignore_actions = [Healthcheck::CONTROLLER_ACTION]
+end
+```
+
 ## Contributing
 
 1. Fork it
