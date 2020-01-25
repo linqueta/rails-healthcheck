@@ -20,6 +20,7 @@ require 'action_view/railtie'
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
+require 'rails-healthcheck'
 
 module Dummy
   class Application < Rails::Application
@@ -35,5 +36,7 @@ module Dummy
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
+
+    config.hosts.clear
   end
 end

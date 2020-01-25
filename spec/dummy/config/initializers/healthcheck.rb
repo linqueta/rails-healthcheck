@@ -6,9 +6,4 @@ Healthcheck.configure do |config|
   config.verbose = false
   config.route = '/healthcheck'
   config.method = :get
-
-  # -- Checks --
-  # Just to simulate successes and errors in specs
-  config.add_check :date_check, -> { raise StandardError if Time.current.year == 1969 }
-  config.add_check :sum_check, -> { [1, 2, 3].sum == 6 }
 end
