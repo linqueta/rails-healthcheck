@@ -5,6 +5,7 @@ require 'rails/generators/base'
 module Healthcheck
   class InstallGenerator < Rails::Generators::Base
     def create_initializer_file
+      desc 'It creates an initialize to set the healthcheck settings'
       create_file(
         'config/initializers/healthcheck.rb',
         <<~HEALTHCHECK_INITIALIZER_TEXT

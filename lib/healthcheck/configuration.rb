@@ -7,7 +7,6 @@ module Healthcheck
     attr_accessor(*SETTINGS)
 
     def initialize
-      SETTINGS.each { |key, _| instance_variable_set("@#{key}", nil) }
       clear!
     end
 
