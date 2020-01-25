@@ -10,12 +10,12 @@ Gem::Specification.new do |spec|
   spec.authors       = ['linqueta']
   spec.email         = ['lincolnrodrs@gmail.com']
 
-  spec.summary       = 'A simple way to configure a healthcheck route for a Rails application'
+  spec.summary       = 'Healthcheck route for a Rails application'
   spec.description   = 'A simple way to configure a healthcheck route for a Rails application'
   spec.homepage      = 'https://github.com/linqueta/rails-healthcheck'
   spec.license       = 'MIT'
 
-  spec.files         = Dir['{app}/**/*', '{lib}/**/*', 'CHANGELOG.md', 'MIT-LICENSE', 'README.md']
+  spec.files         = Dir['{app}/**/*', '{lib}/**/*', 'README.md']
 
   spec.required_ruby_version = '>= 2.5.1'
 
