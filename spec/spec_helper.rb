@@ -7,6 +7,12 @@ SimpleCovConfig.configure
 require 'healthcheck'
 require './app/controllers/healthcheck/healthchecks_controller'
 
+require File.expand_path('../spec/dummy/config/environment.rb', __dir__)
+ENV['RAILS_ROOT'] ||= File.dirname(__FILE__) + '../../../spec/dummy'
+
+require 'rspec/rails'
+require 'timecop'
+
 RSpec.configure do |config|
   config.disable_monkey_patching!
 
@@ -14,5 +20,5 @@ RSpec.configure do |config|
     c.syntax = :expect
   end
 
-  config.before(:each) { Healthcheck.configuration.clear! }
+  config.before { Healthcheck.configuration.clear! }
 end
