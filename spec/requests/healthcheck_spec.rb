@@ -29,7 +29,7 @@ RSpec.describe 'Healthcheck', type: :request do
         it { expect(response.body).not_to eq('') }
         it do
           expect(JSON.parse(response.body)).to eq(
-            'code' => 503,
+            'code' => Healthcheck.configuration.error,
             'errors' => [
               {
                 'exception' => 'StandardError',
