@@ -13,7 +13,6 @@ RSpec.describe Healthcheck::Checker, type: :model do
     subject { checker.check }
 
     before do
-      Healthcheck.configuration.clear!
       Healthcheck.configure do |config|
         config.add_check :zero_division, -> { 100 / 0 }
         config.add_check :standard_error, -> { raise StandardError }
