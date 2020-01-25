@@ -13,6 +13,6 @@ module SimpleCovConfig
   end
 
   def self.cover?(lines)
-    !lines.detect { |line| line.src =~ /(def)/ }
+    !lines.detect { |line| line.src.match?(/(def |attributes)/) }
   end
 end
