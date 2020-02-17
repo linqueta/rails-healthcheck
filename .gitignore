@@ -5,3 +5,4 @@ TODO
 *.gem
 /spec/dummy/tmp/*
 /spec/dummy/log/*
+.bundle/*
