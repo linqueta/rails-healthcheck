@@ -14,6 +14,7 @@ A simple way to configure a healthcheck route in Rails applications
   - [Verbose Errors](#verbose-errors)
   - [Ignoring logs](#ignoring-logs)
     - [Lograge](#lograge)
+    - [Datadog](#lograge)
   - [Requests Examples](#requests-examples)
 - [Contributing](#contributing)
 - [License](#license)
@@ -80,9 +81,9 @@ When happen an error and verbose is enabled (`config.verbose = true`), the respo
 
 ## Ignoring logs
 
-### Lograge
+If you want to ignore Healthcheck request logs, you can use these options:
 
-If you are using [Lograge](https://github.com/roidrage/lograge) you can ignore Healthcheck logs using this code:
+### [Lograge](https://github.com/roidrage/lograge)
 
 ```ruby
 # config/environments/production.rb
@@ -91,6 +92,18 @@ Rails.application.configure do
   config.lograge.enabled = true
   config.lograge.ignore_actions = [Healthcheck::CONTROLLER_ACTION]
 end
+```
+
+### [Datadog](https://github.com/roidrage/lograge)
+
+```ruby
+# config/environments/production.rb
+
+filter = Datadog::Pipeline::SpanFilter.new do |span|
+  span.name == 'rack.request' && span.get_tag('http.url') == Healthcheck.configuration.route
+end
+
+Datadog::Pipeline.before_flush(filter)
 ```
 
 ### Requests Examples
