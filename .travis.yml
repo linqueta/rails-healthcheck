@@ -17,3 +17,4 @@ script:
   - 'bundle exec rspec --fail-fast'
 after_script:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+  
