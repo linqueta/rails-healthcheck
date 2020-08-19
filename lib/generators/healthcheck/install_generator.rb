@@ -18,6 +18,12 @@ module Healthcheck
             config.route = '/healthcheck'
             config.method = :get
 
+            # -- Custom Response --
+            # config.custom = lambda { |controller, checker|
+            #   controller.render json: my_custom_response unless checker.errored?
+            #   ...
+            # }
+
             # -- Checks --
             # config.add_check :database,     -> { ActiveRecord::Base.connection.execute('select 1') }
             # config.add_check :migrations,   -> { ActiveRecord::Migration.check_pending! }

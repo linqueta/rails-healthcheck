@@ -3,7 +3,6 @@
 [![Gem Version][gem_version_image]][gem_version_page]
 [![Build Status][travis_status_image]][travis_page]
 [![Maintainability][code_climate_maintainability_image]][code_climate_maintainability_page]
-[![Test Coverage][code_climate_test_coverage_image]][code_climate_test_coverage_page]
 
 A simple way to configure a healthcheck route in Rails applications
 
@@ -11,6 +10,7 @@ A simple way to configure a healthcheck route in Rails applications
 - [Getting started](#getting-started)
   - [Installation](#installation)
   - [Settings](#settings)
+  - [Custom Response](#custom-response)
   - [Verbose Errors](#verbose-errors)
   - [Ignoring logs](#ignoring-logs)
     - [Lograge](#lograge)
@@ -35,7 +35,7 @@ and run the command bellow to create the initializer:
 rails generate healthcheck:install
 ```
 
-## Settings
+### Settings
 
 You can set the settings in the initializer file (_config/initializers/healthcheck.rb_):
 
@@ -49,6 +49,12 @@ Healthcheck.configure do |config|
   config.route = '/healthcheck'
   config.method = :get
 
+  # -- Custom Response --
+  # config.custom = lambda { |controller, checker|
+  #   controller.render json: my_custom_response unless checker.errored?
+  #   ...
+  # }
+
   # -- Checks --
   # config.add_check :database,     -> { ActiveRecord::Base.connection.execute('select 1') }
   # config.add_check :migrations,   -> { ActiveRecord::Migration.check_pending! }
@@ -56,6 +62,26 @@ Healthcheck.configure do |config|
   # config.add_check :environments, -> { Dotenv.require_keys('ENV_NAME', 'ANOTHER_ENV') }
 end
 ```
+
+### Custom Response
+
+You can override the configs `success`, `error` and `verbose` and write your custom behaviour for the healthcheck api using the field `custom` in the initializer:
+
+```ruby
+Healthcheck.configure do |config|
+  # ...
+
+  # -- Custom Response --
+  config.custom = lambda { |controller, checker|
+    controller.render json: { field_name: 'my custom field value' } unless checker.errored?
+    ...
+  }
+
+  # ...
+end
+```
+
+Pass a `lambda` or `proc` receiving the params `controller` and `checker` to use it correctly. To use checker, you can see the avialable methods [here][checker_url] and [how][healthcheck_controller_url] it is implemented on HealthcheckController.
 
 ### Verbose Errors
 
@@ -114,17 +140,6 @@ Datadog::Pipeline.before_flush(filter)
 curl -i localhost:3000/healthcheck
 
 HTTP/1.1 200 OK
-X-Frame-Options: SAMEORIGIN
-X-XSS-Protection: 1; mode=block
-X-Content-Type-Options: nosniff
-X-Download-Options: noopen
-X-Permitted-Cross-Domain-Policies: none
-Referrer-Policy: strict-origin-when-cross-origin
-Content-Type: text/html
-Cache-Control: no-cache
-X-Request-Id: cbc9fdd0-8090-4927-b061-1e82bcf2e039
-X-Runtime: 0.003599
-Transfer-Encoding: chunked
 ```
 
 - Error
@@ -132,17 +147,6 @@ Transfer-Encoding: chunked
 curl -i localhost:3000/healthcheck
 
 HTTP/1.1 503 Service Unavailable
-X-Frame-Options: SAMEORIGIN
-X-XSS-Protection: 1; mode=block
-X-Content-Type-Options: nosniff
-X-Download-Options: noopen
-X-Permitted-Cross-Domain-Policies: none
-Referrer-Policy: strict-origin-when-cross-origin
-Content-Type: text/html
-Cache-Control: no-cache
-X-Request-Id: e07eb20f-7d32-4f1a-86ad-32403de2b19a
-X-Runtime: 0.033772
-Transfer-Encoding: chunked
 ```
 
 - Error (Verbose)
@@ -150,18 +154,6 @@ Transfer-Encoding: chunked
 curl -i localhost:3000/healthcheck
 
 HTTP/1.1 503 Service Unavailable
-X-Frame-Options: SAMEORIGIN
-X-XSS-Protection: 1; mode=block
-X-Content-Type-Options: nosniff
-X-Download-Options: noopen
-X-Permitted-Cross-Domain-Policies: none
-Referrer-Policy: strict-origin-when-cross-origin
-Content-Type: application/json; charset=utf-8
-Cache-Control: no-cache
-X-Request-Id: 8fa5e69a-bfe3-4bbc-875b-ce86f4269467
-X-Runtime: 0.019992
-Transfer-Encoding: chunked
-
 {"code":503,"errors":[{"name":"zero_division","exception":"ZeroDivisionError","message":"divided by 0"}]}
 ```
 
@@ -189,7 +181,7 @@ Everyone interacting in the Rails::Healthcheck project’s codebases, issue trac
 [travis_page]: https://travis-ci.org/linqueta/rails-healthcheck
 [code_climate_maintainability_image]: https://api.codeclimate.com/v1/badges/670d851a6c06f77fa36e/maintainability
 [code_climate_maintainability_page]: https://codeclimate.com/github/linqueta/rails-healthcheck/maintainability
-[code_climate_test_coverage_image]: https://api.codeclimate.com/v1/badges/670d851a6c06f77fa36e/test_coverage
-[code_climate_test_coverage_page]: https://codeclimate.com/github/linqueta/rails-healthcheck/test_coverage
 [gem_version_image]: https://badge.fury.io/rb/rails-healthcheck.svg
 [gem_version_page]: https://rubygems.org/gems/rails-healthcheck
+[checker_url]: https://github.com/linqueta/rails-healthcheck/blob/master/lib/healthcheck/checker.rb
+[healthcheck_controller_url]: https://github.com/linqueta/rails-healthcheck/blob/master/app/controllers/healthcheck/healthchecks_controller.rb
