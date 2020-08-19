@@ -1,3 +1,7 @@
+### 1.2.0
+
+* Add custom response config and support
+
 ### 1.1.5
 
 * Add Datadog support

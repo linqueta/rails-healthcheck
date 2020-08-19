@@ -5,6 +5,7 @@ module Healthcheck
   class HealthchecksController < ActionController::Base
     def check
       checker = Healthcheck.check
+      return Healthcheck.configuration.custom.call(self, checker) if Healthcheck.configuration.custom
       return head Healthcheck.configuration.success unless checker.errored?
 
       verbose? ? verbose_error(checker) : head_error
@@ -13,7 +14,7 @@ module Healthcheck
     private
 
     def head_error
-      head(Healthcheck.configuration.error)
+      head Healthcheck.configuration.error
     end
 
     def verbose_error(checker)

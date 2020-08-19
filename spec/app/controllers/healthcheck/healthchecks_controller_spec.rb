@@ -38,5 +38,22 @@ RSpec.describe Healthcheck::HealthchecksController, type: :model do
         it { expect(controller).to receive(:render).once }
       end
     end
+
+    context 'with custom' do
+      it do
+        Healthcheck.configure do |config|
+          config.custom = lambda { |controller, checker|
+            controller.head :ok if checker.success?
+          }
+        end
+
+        expect(Healthcheck.configuration.custom).to receive(:call).once
+        subject
+
+        Healthcheck.configure do |config|
+          config.custom = nil
+        end
+      end
+    end
   end
 end
