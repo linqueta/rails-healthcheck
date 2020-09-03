@@ -182,6 +182,6 @@ Everyone interacting in the Rails::Healthcheck project’s codebases, issue trac
 [code_climate_maintainability_image]: https://api.codeclimate.com/v1/badges/670d851a6c06f77fa36e/maintainability
 [code_climate_maintainability_page]: https://codeclimate.com/github/linqueta/rails-healthcheck/maintainability
 [gem_version_image]: https://badge.fury.io/rb/rails-healthcheck.svg
-[gem_version_page]: https://rubygems.org/gems/rails-healthcheck
+[gem_version_page]: https://badge.fury.io/rb/rails-healthcheck
 [checker_url]: https://github.com/linqueta/rails-healthcheck/blob/master/lib/healthcheck/checker.rb
 [healthcheck_controller_url]: https://github.com/linqueta/rails-healthcheck/blob/master/app/controllers/healthcheck/healthchecks_controller.rb
