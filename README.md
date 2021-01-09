@@ -51,8 +51,8 @@ Healthcheck.configure do |config|
 
   # -- Custom Response --
   # config.custom = lambda { |controller, checker|
-  #   controller.render json: my_custom_response unless checker.errored?
-  #   ...
+  #   return controller.render(plain: 'Everything is awesome!') unless checker.errored?
+  #   controller.verbose? ? controller.verbose_error(checker) : controller.head_error
   # }
 
   # -- Checks --
