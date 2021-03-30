@@ -22,7 +22,7 @@ RSpec.describe 'Healthcheck', type: :request do
       context 'verbose true' do
         before do
           Healthcheck.configuration.verbose = true
-          Timecop.freeze(Time.parse('19690101')) { subject }
+          Timecop.freeze(Time.parse('19690101Z')) { subject }
         end
 
         it { expect(response.code) == Healthcheck.configuration.error }
