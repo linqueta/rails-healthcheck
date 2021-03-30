@@ -1,3 +1,7 @@
+### Unreleased
+
+* Add runtime dependency on `actionpack` and `railties` rather than meta-`rails` gem.
+
 ### 1.2.0
 
 * Add custom response config and support
