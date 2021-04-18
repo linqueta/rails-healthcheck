@@ -4,6 +4,8 @@ require 'action_controller/railtie'
 module Healthcheck
   class HealthchecksController < ActionController::Base
     def check
+      return head :unauthorized unless token_valid?
+
       checker = Healthcheck.check
       return Healthcheck.configuration.custom.call(self, checker) if Healthcheck.configuration.custom
       return head Healthcheck.configuration.success unless checker.errored?
@@ -27,6 +29,12 @@ module Healthcheck
 
     def verbose?
       Healthcheck.configuration.verbose
+    end
+
+    def token_valid?
+      return true if Healthcheck.configuration.token.blank?
+
+      Healthcheck.configuration.token == params[:token]
     end
   end
 end

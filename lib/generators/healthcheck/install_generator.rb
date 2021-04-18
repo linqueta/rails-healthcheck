@@ -17,6 +17,7 @@ module Healthcheck
             config.verbose = false
             config.route = '/healthcheck'
             config.method = :get
+            config.token = ENV['HEALTH_CHECK_TOKEN']
 
             # -- Custom Response --
             # config.custom = lambda { |controller, checker|
