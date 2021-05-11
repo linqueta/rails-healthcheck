@@ -1,0 +1,26 @@
+name: Pull Request Tests
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        ruby: ["2.5", "2.6", "2.7", "3.0"]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Ruby version specified in `.ruby-version`
+        with:
+          ruby-version: ${{ matrix.ruby }}
+        uses: eregon/use-ruby-action@master
+      - name: Install dependencies
+        run: bundle install --jobs 4 --retry 3
+      - name: Run tests with RSpec
+        run: bundle exec rspec
+      - name: Run Rubocop
+        env:
+          RAILS_ENV: test
+        run: bundle exec rubocop --config .rubocop.yml
