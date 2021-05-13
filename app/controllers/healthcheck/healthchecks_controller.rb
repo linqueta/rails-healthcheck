@@ -11,8 +11,6 @@ module Healthcheck
       verbose? ? verbose_error(checker) : head_error
     end
 
-    private
-
     def head_error
       head Healthcheck.configuration.error
     end
