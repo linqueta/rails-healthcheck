@@ -2,7 +2,7 @@
 
 module Healthcheck
   class Configuration
-    SETTINGS = %i[success error verbose route method checks custom].freeze
+    SETTINGS = %i[success error verbose route method token checks custom].freeze
 
     attr_accessor(*SETTINGS)
 

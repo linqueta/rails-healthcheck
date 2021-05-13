@@ -52,4 +52,31 @@ RSpec.describe 'Healthcheck', type: :request do
       end
     end
   end
+
+  describe '/healthcheck?token=custom_token' do
+    subject { get '/healthcheck', params: { token: token } }
+
+    let(:token) { 'custom_token' }
+
+    before do
+      Healthcheck.configuration.token = 'custom_token'
+      Healthcheck.configuration.add_check :heartbeat, -> { true }
+    end
+
+    context 'with correct token' do
+      before { subject }
+
+      it { expect(response.code) == Healthcheck.configuration.success }
+      it { expect(response.body).to eq('') }
+    end
+
+    context 'with wrong token' do
+      before { subject }
+
+      let(:token) { '' }
+
+      it { expect(response).to be_unauthorized }
+      it { expect(response.body).to eq('') }
+    end
+  end
 end
