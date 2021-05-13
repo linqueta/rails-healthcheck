@@ -1,12 +1,11 @@
 # [Rails::Healthcheck][gem_page]
 
 [![Gem Version][gem_version_image]][gem_version_page]
-[![Build Status][travis_status_image]][travis_page]
-[![Maintainability][code_climate_maintainability_image]][code_climate_maintainability_page]
 
 A simple way to configure a healthcheck route in Rails applications
 
 ## Table of Contents
+
 - [Getting started](#getting-started)
   - [Installation](#installation)
   - [Settings](#settings)
@@ -14,7 +13,7 @@ A simple way to configure a healthcheck route in Rails applications
   - [Verbose Errors](#verbose-errors)
   - [Ignoring logs](#ignoring-logs)
     - [Lograge](#lograge)
-    - [Datadog](#lograge)
+    - [Datadog](#datadog)
   - [Requests Examples](#requests-examples)
 - [Contributing](#contributing)
 - [License](#license)
@@ -89,19 +88,19 @@ When happen an error and verbose is enabled (`config.verbose = true`), the respo
 
 ```json
 {
-    "code": 503,
-    "errors": [
-        {
-            "name": "migrations",
-            "exception": "ActiveRecord::PendingMigrationError",
-            "message": "Migrations are pending. To resolve this issue, run: bin/rails db:migrate RAILS_ENV=production"
-        },
-        {
-            "name": "environments",
-            "exception": "Dotenv::MissingKeys",
-            "message": "Missing required configuration key: [\"RAILS_ENV\"]"
-        }
-    ]
+  "code": 503,
+  "errors": [
+    {
+      "name": "migrations",
+      "exception": "ActiveRecord::PendingMigrationError",
+      "message": "Migrations are pending. To resolve this issue, run: bin/rails db:migrate RAILS_ENV=production"
+    },
+    {
+      "name": "environments",
+      "exception": "Dotenv::MissingKeys",
+      "message": "Missing required configuration key: [\"RAILS_ENV\"]"
+    }
+  ]
 }
 ```
 
@@ -143,6 +142,7 @@ HTTP/1.1 200 OK
 ```
 
 - Error
+
 ```shell
 curl -i localhost:3000/healthcheck
 
@@ -150,6 +150,7 @@ HTTP/1.1 503 Service Unavailable
 ```
 
 - Error (Verbose)
+
 ```shell
 curl -i localhost:3000/healthcheck
 
@@ -177,10 +178,6 @@ Everyone interacting in the Rails::Healthcheck project’s codebases, issue trac
 [code_of_conduct_page]: https://github.com/linqueta/rails-healthcheck/blob/master/CODE_OF_CONDUCT.md
 [mit_license_page]: https://opensource.org/licenses/MIT
 [contributor_convenant_page]: http://contributor-covenant.org
-[travis_status_image]: https://travis-ci.org/linqueta/rails-healthcheck.svg?branch=master
-[travis_page]: https://travis-ci.org/linqueta/rails-healthcheck
-[code_climate_maintainability_image]: https://api.codeclimate.com/v1/badges/670d851a6c06f77fa36e/maintainability
-[code_climate_maintainability_page]: https://codeclimate.com/github/linqueta/rails-healthcheck/maintainability
 [gem_version_image]: https://badge.fury.io/rb/rails-healthcheck.svg
 [gem_version_page]: https://badge.fury.io/rb/rails-healthcheck
 [checker_url]: https://github.com/linqueta/rails-healthcheck/blob/master/lib/healthcheck/checker.rb
