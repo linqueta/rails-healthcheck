@@ -10,7 +10,7 @@ A simple way to configure a healthcheck route in Rails applications
   - [Installation](#installation)
   - [Settings](#settings)
   - [Custom Response](#custom-response)
-  - [Verbose Errors](#verbose-errors)
+  - [Verbose](#verbose)
   - [Ignoring logs](#ignoring-logs)
     - [Lograge](#lograge)
     - [Datadog](#datadog)
@@ -82,9 +82,23 @@ end
 
 Pass a `lambda` or `proc` receiving the params `controller` and `checker` to use it correctly. To use checker, you can see the avialable methods [here][checker_url] and [how][healthcheck_controller_url] it is implemented on HealthcheckController.
 
-### Verbose Errors
+### Verbose
 
-When happen an error and verbose is enabled (`config.verbose = true`), the response will be like this:
+You can enable verbose responses setting `config.verbose = true`.
+
+- On success
+
+```json
+{
+  "code": 200,
+  "status": {
+    "migrations": "OK",
+    "environments": "OK"
+  }
+}
+```
+
+- On error
 
 ```json
 {
