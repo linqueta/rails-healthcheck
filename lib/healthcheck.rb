@@ -8,6 +8,10 @@ require 'healthcheck/error'
 require 'healthcheck/router'
 require 'healthcheck/engine'
 
+require 'healthcheck/response/base'
+require 'healthcheck/response/success'
+require 'healthcheck/response/error'
+
 module Healthcheck
   CONTROLLER_ACTION = 'Healthcheck::HealthchecksController#check'
 
@@ -22,10 +26,18 @@ module Healthcheck
   end
 
   def routes(router)
-    Healthcheck::Router.mount(router)
+    Router.mount(router)
   end
 
   def check
-    Healthcheck::Checker.new.tap(&:check)
+    Checker.new.tap(&:check)
+  end
+
+  def custom!(controller)
+    configuration.custom.call(controller, check)
+  end
+
+  def custom?
+    configuration.custom
   end
 end
