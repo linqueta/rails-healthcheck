@@ -1,4 +1,4 @@
-### Unreleased
+### 1.4.0
 
 - Set all controller methods as public methods (#43)
 - Improve controller and checker code (#)
