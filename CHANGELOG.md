@@ -1,8 +1,8 @@
 ### 1.4.0
 
 - Set all controller methods as public methods (#43)
-- Improve controller and checker code (#)
-- Add verbose for success response (#)
+- Improve controller and checker code (#56)
+- Add verbose for success response (#56)
 
 ### 1.3.0
 
