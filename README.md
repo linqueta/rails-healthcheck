@@ -73,7 +73,6 @@ Healthcheck.configure do |config|
   # -- Custom Response --
   config.custom = lambda { |controller, checker|
     controller.render json: { field_name: 'my custom field value' } unless checker.errored?
-    ...
   }
 
   # ...
