@@ -5,7 +5,8 @@ module Healthcheck
     def self.mount(router)
       router.send(
         Healthcheck.configuration.method,
-        Healthcheck.configuration.route => 'healthcheck/healthchecks#check'
+        Healthcheck.configuration.route => 'healthcheck/healthchecks#check',
+        as: :rails_health_check
       )
     end
   end

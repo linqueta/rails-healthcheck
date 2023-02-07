@@ -33,6 +33,7 @@ module Healthcheck
         HEALTHCHECK_INITIALIZER_TEXT
       )
       route 'Healthcheck.routes(self)'
+      comment_lines 'config/routes.rb', /:rails_health_check/
     end
   end
 end
