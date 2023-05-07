@@ -10,6 +10,7 @@ module Healthcheck
       end
 
       def execute!
+        puts verbose
         verbose? ? @controller.render(verbose) : @controller.head(status)
       end
 

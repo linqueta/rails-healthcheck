@@ -34,10 +34,12 @@ RSpec.describe Healthcheck::HealthchecksController, type: :model do
           expect(controller)
             .to receive(:render)
             .with(
-              status: Healthcheck.configuration.success,
-              json: {
-                code: Healthcheck.configuration.success,
-                status: { zero_division: 'OK' }
+              {
+                status: Healthcheck.configuration.success,
+                json: {
+                  code: Healthcheck.configuration.success,
+                  status: { zero_division: 'OK' }
+                }
               }
             )
             .once
@@ -57,17 +59,19 @@ RSpec.describe Healthcheck::HealthchecksController, type: :model do
           expect(controller)
             .to receive(:render)
             .with(
-              json: {
-                code: Healthcheck.configuration.error,
-                errors: [
-                  {
-                    'exception' => 'ZeroDivisionError',
-                    'message' => 'divided by 0',
-                    'name' => 'zero_division'
-                  }
-                ]
-              },
-              status: Healthcheck.configuration.error
+              {
+                json: {
+                  code: Healthcheck.configuration.error,
+                  errors: [
+                    {
+                      'exception' => 'ZeroDivisionError',
+                      'message' => 'divided by 0',
+                      'name' => 'zero_division'
+                    }
+                  ]
+                },
+                status: Healthcheck.configuration.error
+              }
             )
             .once
         end

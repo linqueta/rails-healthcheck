@@ -8,3 +8,4 @@ TODO
 .bundle/*
 *.ruby-*
 .DS_Store
+Gemfile.lock
