@@ -7,3 +7,5 @@ TODO
 /spec/dummy/log/*
 .bundle/*
 *.ruby-*
+.DS_Store
+Gemfile.lock
